@@ -1,0 +1,171 @@
+{
+  "app_name": "Recruitment CRM",
+  "search": {
+    "title": "Advanced Search",
+    "button": "Search",
+    "candidates": "Candidates",
+    "missions": "Missions",
+    "show_advanced": "Advanced options",
+    "hide_advanced": "Hide options",
+    "name_placeholder": "Search by last name",
+    "first_name_placeholder": "Search by first name",
+    "mission_title_placeholder": "Search by title",
+    "client_placeholder": "Search by client",
+    "company_placeholder": "Search by company",
+    "all_sectors": "All sectors",
+    "all_functions": "All functions",
+    "loading": "Searching...",
+    "loading_filters": "Loading filters...",
+    "filter_error": "Unable to load filters. Please try again.",
+    "no_results": "No results found. Please modify your search criteria.",
+    "candidate_results": "{{count}} candidate(s) found",
+    "mission_results": "{{count}} mission(s) found"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "candidates": "Candidates",
+    "missions": "Missions",
+    "new_candidate": "New candidate"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "statistics": "Statistics",
+    "total_candidates": "Total candidates",
+    "sectors": "Sectors",
+    "functions": "Functions",
+    "recent_candidates": "Recently added candidates",
+    "main_sectors": "Main sectors",
+    "main_functions": "Main functions",
+    "no_data": "No data available",
+    "see_all": "See all",
+    "add_candidate": "Add candidate"
+  },
+  "candidates": {
+    "title": "Candidates",
+    "search": "Search for a candidate...",
+    "no_candidates": "No candidates in the database",
+    "add_candidate": "Add candidate",
+    "name": "Last name",
+    "first_name": "First name",
+    "function": "Function",
+    "sector": "Sector",
+    "actions": "Actions",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "delete_confirm": "Are you sure you want to delete this candidate?"
+  },
+  "missions": {
+    "title": "Recruitment Missions",
+    "new_mission": "New mission",
+    "search": "Search for a mission...",
+    "no_missions": "No missions found",
+    "create_mission": "Create mission",
+    "all_statuses": "All statuses",
+    "all_priorities": "All priorities",
+    "status": {
+      "active": "Active",
+      "paused": "Paused",
+      "completed": "Completed"
+    },
+    "priority": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "client": "Client",
+    "location": "Location",
+    "candidate_count": "candidates",
+    "actions": {
+      "details": "Details",
+      "edit": "Edit",
+      "delete": "Delete",
+      "delete_confirm": "Are you sure you want to delete this mission?"
+    }
+  },
+  "mission_form": {
+    "edit_title": "Edit mission",
+    "new_title": "New mission",
+    "general_info": "General information",
+    "job_title": "Job title",
+    "client": "Client / Company",
+    "location": "Location",
+    "function": "Function",
+    "sector": "Sector",
+    "salary_range": "Salary range",
+    "start_date": "Start date",
+    "status": "Status",
+    "priority": "Priority",
+    "description": "Job description",
+    "description_placeholder": "Describe the role, responsibilities, required skills, etc.",
+    "client_contact": "Client contact",
+    "contact_name": "Contact name",
+    "email": "Email",
+    "phone": "Phone",
+    "recruitment_steps": "Recruitment process steps",
+    "recruitment_steps_help": "You can customize the steps or leave the default steps",
+    "step_name": "Step name",
+    "step_description": "Description (optional)",
+    "add_step": "Add step",
+    "cancel": "Cancel",
+    "save": "Save changes",
+    "create": "Create mission"
+  },
+  "mission_detail": {
+    "edit": "Edit",
+    "tabs": {
+      "info": "Information",
+      "candidates": "Candidates",
+      "process": "Recruitment process"
+    },
+    "info": {
+      "client": "Client",
+      "function": "Function",
+      "sector": "Sector",
+      "location": "Location",
+      "salary": "Salary",
+      "start_date": "Start date",
+      "description": "Job description",
+      "contact": "Client contact"
+    },
+    "candidates": {
+      "add_candidate": "Add candidate",
+      "select_candidate": "Select a candidate",
+      "add": "Add",
+      "all_associated": "All candidates are already associated with this mission.",
+      "associated_candidates": "Associated candidates",
+      "search": "Search for a candidate...",
+      "no_candidates": "No candidates associated with this mission",
+      "no_search_results": "No candidates match your search",
+      "remove_confirm": "Are you sure you want to remove this candidate from the mission?"
+    },
+    "process": {
+      "no_steps": "No recruitment steps defined",
+      "add_steps": "Add steps",
+      "add_candidates_first": "Add candidates to track their progress",
+      "manage_candidates": "Manage candidates",
+      "steps": "Steps",
+      "status": {
+        "to_do": "To do",
+        "in_progress": "In progress",
+        "completed": "Completed",
+        "rejected": "Rejected"
+      },
+      "initialize": "Initialize"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "required": "This field is required",
+    "error": "An error occurred"
+  },
+  "language": {
+    "fr": "French",
+    "en": "English",
+    "vi": "Vietnamese",
+    "select": "Select language"
+  }
+}

@@ -75,6 +75,131 @@ class Candidate(db.Model):
             'interactions': [interaction.to_dict() for interaction in self.interactions]
         }
 
+# Mission model for recruitment assignments
+class Mission(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(150), nullable=False)  # Position title
+    client = db.Column(db.String(100), nullable=True)  # Client or company name
+    description = db.Column(db.Text, nullable=True)
+    function = db.Column(db.String(100), nullable=True)  # Same as candidate function
+    sector = db.Column(db.String(100), nullable=True)  # Same as candidate sector
+    location = db.Column(db.String(100), nullable=True)
+    salary_range = db.Column(db.String(100), nullable=True)
+    start_date = db.Column(db.DateTime, nullable=True)  # When the mission starts
+    status = db.Column(db.String(50), default='Actif', nullable=False)  # Active, Paused, Completed
+    client_contact_name = db.Column(db.String(100), nullable=True)
+    client_contact_email = db.Column(db.String(100), nullable=True)
+    client_contact_phone = db.Column(db.String(50), nullable=True)
+    priority = db.Column(db.String(20), default='Normal', nullable=False)  # Low, Normal, High, Urgent
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Relationships
+    recruitment_steps = db.relationship('RecruitmentStep', backref='mission', lazy=True, cascade="all, delete-orphan", order_by="RecruitmentStep.order")
+    
+    def to_dict(self):
+        candidates_data = []
+        
+        # If mission_candidates table exists
+        if db.inspect(db.engine).has_table('mission_candidates'):
+            # Get candidate data with candidature status
+            mission_candidates_data = db.session.query(
+                Candidate, mission_candidates.c.status, mission_candidates.c.notes
+            ).join(
+                mission_candidates, mission_candidates.c.candidate_id == Candidate.id
+            ).filter(
+                mission_candidates.c.mission_id == self.id
+            ).all()
+            
+            candidates_data = [{
+                **candidate.to_dict(),
+                'candidature_status': status,
+                'candidature_notes': notes
+            } for candidate, status, notes in mission_candidates_data]
+        
+        return {
+            'id': self.id,
+            'title': self.title,
+            'client': self.client or '',
+            'description': self.description or '',
+            'function': self.function or '',
+            'sector': self.sector or '',
+            'location': self.location or '',
+            'salary_range': self.salary_range or '',
+            'start_date': self.start_date.isoformat() if self.start_date else None,
+            'status': self.status,
+            'client_contact_name': self.client_contact_name or '',
+            'client_contact_email': self.client_contact_email or '',
+            'client_contact_phone': self.client_contact_phone or '',
+            'priority': self.priority,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None,
+            'candidates': candidates_data,
+            'recruitment_steps': [step.to_dict() for step in self.recruitment_steps]
+        }
+
+# RecruitmentStep model for tracking stages in the hiring process
+class RecruitmentStep(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    mission_id = db.Column(db.Integer, db.ForeignKey('mission.id'), nullable=False)
+    name = db.Column(db.String(100), nullable=False)  # E.g., "CV Review", "Phone Screen", "Interview"
+    description = db.Column(db.Text, nullable=True)
+    order = db.Column(db.Integer, nullable=False)  # Order of steps in the process
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    # Relationships
+    candidate_steps = db.relationship('CandidateStep', backref='recruitment_step', lazy=True, cascade="all, delete-orphan")
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'mission_id': self.mission_id,
+            'name': self.name,
+            'description': self.description or '',
+            'order': self.order,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'candidate_steps': [cs.to_dict() for cs in self.candidate_steps]
+        }
+
+# CandidateStep model for tracking a candidate's progress through recruitment steps
+class CandidateStep(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    recruitment_step_id = db.Column(db.Integer, db.ForeignKey('recruitment_step.id'), nullable=False)
+    candidate_id = db.Column(db.Integer, db.ForeignKey('candidate.id'), nullable=False)
+    status = db.Column(db.String(50), default='À faire', nullable=False)  # À faire, En cours, Terminé, Rejeté
+    notes = db.Column(db.Text, nullable=True)
+    completed_at = db.Column(db.DateTime, nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Add a unique constraint to ensure a candidate has only one entry per step
+    __table_args__ = (db.UniqueConstraint('recruitment_step_id', 'candidate_id'),)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'recruitment_step_id': self.recruitment_step_id,
+            'candidate_id': self.candidate_id,
+            'status': self.status,
+            'notes': self.notes or '',
+            'completed_at': self.completed_at.isoformat() if self.completed_at else None,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None
+        }
+
+# Association table for missions and candidates (candidatures)
+mission_candidates = db.Table('mission_candidates',
+    db.Column('mission_id', db.Integer, db.ForeignKey('mission.id'), primary_key=True),
+    db.Column('candidate_id', db.Integer, db.ForeignKey('candidate.id'), primary_key=True),
+    db.Column('status', db.String(50), default='En cours'),  # Statut de la candidature
+    db.Column('added_at', db.DateTime, default=datetime.utcnow),
+    db.Column('notes', db.Text, nullable=True)
+)
+
+# Update relationships for Candidate and Mission
+Candidate.missions = db.relationship('Mission', secondary=mission_candidates, lazy='subquery',
+    backref=db.backref('mission_candidates_rel', lazy=True))
+
 # Tag model for categorizing candidates
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -123,6 +248,37 @@ with app.app_context():
 UPLOAD_FOLDER = os.path.join(basedir, 'uploads')
 os.makedirs(os.path.join(UPLOAD_FOLDER, 'cvs'), exist_ok=True)
 os.makedirs(os.path.join(UPLOAD_FOLDER, 'profile_pictures'), exist_ok=True)
+
+# Routes for sectors and functions
+@app.route('/api/sectors', methods=['GET'])
+def get_sectors():
+    # Cette route renvoie tous les secteurs d'activité
+    # Nous allons récupérer tous les secteurs uniques des candidats
+    sectors_query = db.session.query(Candidate.sector, Candidate.sector_code).distinct().filter(Candidate.sector.isnot(None))
+    sectors = [{'code': row.sector_code, 'name': row.sector} for row in sectors_query if row.sector]
+    
+    # Ajouter également les secteurs des missions
+    mission_sectors = db.session.query(Mission.sector, Mission.sector_code).distinct().filter(Mission.sector.isnot(None))
+    for row in mission_sectors:
+        if row.sector and not any(s['code'] == row.sector_code for s in sectors):
+            sectors.append({'code': row.sector_code, 'name': row.sector})
+    
+    return jsonify(sorted(sectors, key=lambda x: x['name']))
+
+@app.route('/api/functions', methods=['GET'])
+def get_functions():
+    # Cette route renvoie toutes les fonctions
+    # Nous allons récupérer toutes les fonctions uniques des candidats
+    functions_query = db.session.query(Candidate.function, Candidate.function_code).distinct().filter(Candidate.function.isnot(None))
+    functions = [{'code': row.function_code, 'name': row.function} for row in functions_query if row.function]
+    
+    # Ajouter également les fonctions des missions
+    mission_functions = db.session.query(Mission.function, Mission.function_code).distinct().filter(Mission.function.isnot(None))
+    for row in mission_functions:
+        if row.function and not any(f['code'] == row.function_code for f in functions):
+            functions.append({'code': row.function_code, 'name': row.function})
+    
+    return jsonify(sorted(functions, key=lambda x: x['name']))
 
 # Routes for candidates
 @app.route('/api/candidates', methods=['GET'])
@@ -180,6 +336,35 @@ def get_candidates():
     
     candidates = query.all()
     return jsonify([c.to_dict() for c in candidates])
+
+@app.route('/api/candidates/search', methods=['POST'])
+def search_candidates():
+    data = request.json
+    
+    # Base query
+    query = Candidate.query
+    
+    # Apply filters if provided
+    if data.get('name'):
+        query = query.filter(Candidate.name.ilike(f"%{data['name']}%"))
+    
+    if data.get('firstName'):
+        query = query.filter(Candidate.first_name.ilike(f"%{data['firstName']}%"))
+    
+    if data.get('sectorCode'):
+        query = query.filter(Candidate.sector_code == data['sectorCode'])
+    
+    if data.get('functionCode'):
+        query = query.filter(Candidate.function_code == data['functionCode'])
+    
+    if data.get('companyName'):
+        query = query.filter(Candidate.company.ilike(f"%{data['companyName']}%"))
+    
+    # Execute query
+    candidates = query.all()
+    
+    # Return results
+    return jsonify([candidate.to_dict() for candidate in candidates])
 
 @app.route('/api/candidates/<int:candidate_id>', methods=['GET'])
 def get_candidate(candidate_id):
@@ -532,6 +717,295 @@ def serve_frontend(path):
     if path and os.path.exists(os.path.join('../frontend', path)):
         return send_from_directory('../frontend', path)
     return send_from_directory('../frontend', 'index.html')
+
+# Routes for missions
+@app.route('/api/missions', methods=['GET'])
+def get_missions():
+    missions = Mission.query.all()
+    return jsonify([mission.to_dict() for mission in missions])
+
+@app.route('/api/missions/search', methods=['POST'])
+def search_missions():
+    data = request.json
+    
+    # Base query
+    query = Mission.query
+    
+    # Apply filters if provided
+    if data.get('missionTitle'):
+        query = query.filter(Mission.title.ilike(f"%{data['missionTitle']}%"))
+    
+    if data.get('missionClient'):
+        query = query.filter(Mission.client.ilike(f"%{data['missionClient']}%"))
+    
+    if data.get('sectorCode'):
+        query = query.filter(Mission.sector_code == data['sectorCode'])
+    
+    if data.get('functionCode'):
+        query = query.filter(Mission.function_code == data['functionCode'])
+    
+    if data.get('missionDate'):
+        date_obj = datetime.strptime(data['missionDate'], '%Y-%m-%d').date()
+        query = query.filter(func.date(Mission.creation_date) == date_obj)
+    
+    if data.get('companyName'):
+        # Pour les missions, on cherche dans le champ "client"
+        query = query.filter(Mission.client.ilike(f"%{data['companyName']}%"))
+    
+    # Execute query
+    missions = query.all()
+    
+    # Return results
+    return jsonify([mission.to_dict() for mission in missions])
+
+@app.route('/api/missions/<int:mission_id>', methods=['GET'])
+def get_mission(mission_id):
+    mission = Mission.query.get_or_404(mission_id)
+    return jsonify(mission.to_dict())
+
+@app.route('/api/missions', methods=['POST'])
+def create_mission():
+    data = request.json
+    
+    if not data or not data.get('title'):
+        return jsonify({'error': 'Le titre de la mission est requis'}), 400
+        
+    mission = Mission(
+        title=data.get('title'),
+        client=data.get('client'),
+        description=data.get('description'),
+        function=data.get('function'),
+        sector=data.get('sector'),
+        location=data.get('location'),
+        salary_range=data.get('salary_range'),
+        status=data.get('status', 'Actif'),
+        client_contact_name=data.get('client_contact_name'),
+        client_contact_email=data.get('client_contact_email'),
+        client_contact_phone=data.get('client_contact_phone'),
+        priority=data.get('priority', 'Normal')
+    )
+    
+    # Parse date string to datetime if provided
+    if data.get('start_date'):
+        try:
+            mission.start_date = datetime.fromisoformat(data.get('start_date').replace('Z', '+00:00'))
+        except (ValueError, TypeError):
+            pass
+    
+    db.session.add(mission)
+    
+    # Create default recruitment steps if any are provided
+    if data.get('recruitment_steps'):
+        for i, step_data in enumerate(data.get('recruitment_steps')):
+            step = RecruitmentStep(
+                mission_id=mission.id,
+                name=step_data.get('name'),
+                description=step_data.get('description', ''),
+                order=i
+            )
+            db.session.add(step)
+    else:
+        # Add default steps if none provided
+        default_steps = [
+            'Présélection CV',
+            'Entretien téléphonique',
+            'Entretien client',
+            'Test technique',
+            'Offre',
+            'Embauche'
+        ]
+        for i, step_name in enumerate(default_steps):
+            step = RecruitmentStep(
+                mission=mission,
+                name=step_name,
+                order=i
+            )
+            db.session.add(step)
+    
+    db.session.commit()
+    return jsonify(mission.to_dict()), 201
+
+@app.route('/api/missions/<int:mission_id>', methods=['PUT'])
+def update_mission(mission_id):
+    mission = Mission.query.get_or_404(mission_id)
+    data = request.json
+    
+    if not data:
+        return jsonify({'error': 'Données invalides'}), 400
+        
+    # Update mission fields
+    mission.title = data.get('title', mission.title)
+    mission.client = data.get('client', mission.client)
+    mission.description = data.get('description', mission.description)
+    mission.function = data.get('function', mission.function)
+    mission.sector = data.get('sector', mission.sector)
+    mission.location = data.get('location', mission.location)
+    mission.salary_range = data.get('salary_range', mission.salary_range)
+    mission.status = data.get('status', mission.status)
+    mission.client_contact_name = data.get('client_contact_name', mission.client_contact_name)
+    mission.client_contact_email = data.get('client_contact_email', mission.client_contact_email)
+    mission.client_contact_phone = data.get('client_contact_phone', mission.client_contact_phone)
+    mission.priority = data.get('priority', mission.priority)
+    
+    # Parse date string to datetime if provided
+    if data.get('start_date'):
+        try:
+            mission.start_date = datetime.fromisoformat(data.get('start_date').replace('Z', '+00:00'))
+        except (ValueError, TypeError):
+            pass
+    
+    db.session.commit()
+    return jsonify(mission.to_dict())
+
+@app.route('/api/missions/<int:mission_id>', methods=['DELETE'])
+def delete_mission(mission_id):
+    mission = Mission.query.get_or_404(mission_id)
+    db.session.delete(mission)
+    db.session.commit()
+    return jsonify({'message': 'Mission supprimée avec succès'})
+
+# Routes for recruitment steps
+@app.route('/api/missions/<int:mission_id>/steps', methods=['GET'])
+def get_recruitment_steps(mission_id):
+    mission = Mission.query.get_or_404(mission_id)
+    steps = RecruitmentStep.query.filter_by(mission_id=mission_id).order_by(RecruitmentStep.order).all()
+    return jsonify([step.to_dict() for step in steps])
+
+@app.route('/api/missions/<int:mission_id>/steps', methods=['POST'])
+def create_recruitment_step(mission_id):
+    mission = Mission.query.get_or_404(mission_id)
+    data = request.json
+    
+    if not data or not data.get('name'):
+        return jsonify({'error': 'Le nom de l\'étape est requis'}), 400
+    
+    # Get the highest current order and add 1
+    max_order = db.session.query(func.max(RecruitmentStep.order)).filter(RecruitmentStep.mission_id == mission_id).scalar() or -1
+    
+    step = RecruitmentStep(
+        mission_id=mission_id,
+        name=data.get('name'),
+        description=data.get('description', ''),
+        order=max_order + 1
+    )
+    
+    db.session.add(step)
+    db.session.commit()
+    return jsonify(step.to_dict()), 201
+
+@app.route('/api/steps/<int:step_id>', methods=['PUT'])
+def update_recruitment_step(step_id):
+    step = RecruitmentStep.query.get_or_404(step_id)
+    data = request.json
+    
+    if not data:
+        return jsonify({'error': 'Données invalides'}), 400
+        
+    step.name = data.get('name', step.name)
+    step.description = data.get('description', step.description)
+    
+    if 'order' in data:
+        step.order = data.get('order')
+    
+    db.session.commit()
+    return jsonify(step.to_dict())
+
+@app.route('/api/steps/<int:step_id>', methods=['DELETE'])
+def delete_recruitment_step(step_id):
+    step = RecruitmentStep.query.get_or_404(step_id)
+    db.session.delete(step)
+    db.session.commit()
+    return jsonify({'message': 'Étape supprimée avec succès'})
+
+# Routes for candidate steps (progress tracking)
+@app.route('/api/missions/<int:mission_id>/candidates/<int:candidate_id>', methods=['POST'])
+def add_candidate_to_mission(mission_id, candidate_id):
+    mission = Mission.query.get_or_404(mission_id)
+    candidate = Candidate.query.get_or_404(candidate_id)
+    
+    data = request.json or {}
+    status = data.get('status', 'En cours')
+    notes = data.get('notes', '')
+    
+    # Check if already exists in mission
+    stmt = mission_candidates.select().where(
+        mission_candidates.c.mission_id == mission_id,
+        mission_candidates.c.candidate_id == candidate_id
+    )
+    result = db.session.execute(stmt).fetchone()
+    
+    if result:
+        return jsonify({'error': 'Le candidat est déjà associé à cette mission'}), 400
+    
+    # Add candidate to mission
+    stmt = mission_candidates.insert().values(
+        mission_id=mission_id,
+        candidate_id=candidate_id,
+        status=status,
+        notes=notes
+    )
+    db.session.execute(stmt)
+    
+    # Create candidate steps for each recruitment step
+    steps = RecruitmentStep.query.filter_by(mission_id=mission_id).order_by(RecruitmentStep.order).all()
+    
+    for step in steps:
+        candidate_step = CandidateStep(
+            recruitment_step_id=step.id,
+            candidate_id=candidate_id,
+            status='À faire'
+        )
+        db.session.add(candidate_step)
+    
+    db.session.commit()
+    return jsonify({'message': 'Candidat ajouté à la mission avec succès'}), 201
+
+@app.route('/api/missions/<int:mission_id>/candidates/<int:candidate_id>', methods=['DELETE'])
+def remove_candidate_from_mission(mission_id, candidate_id):
+    # Delete from association table
+    stmt = mission_candidates.delete().where(
+        mission_candidates.c.mission_id == mission_id,
+        mission_candidates.c.candidate_id == candidate_id
+    )
+    db.session.execute(stmt)
+    
+    # Also delete all candidate steps
+    steps = RecruitmentStep.query.filter_by(mission_id=mission_id).all()
+    for step in steps:
+        CandidateStep.query.filter_by(
+            recruitment_step_id=step.id,
+            candidate_id=candidate_id
+        ).delete()
+    
+    db.session.commit()
+    return jsonify({'message': 'Candidat retiré de la mission avec succès'})
+
+@app.route('/api/candidate-steps/<int:step_id>', methods=['PUT'])
+def update_candidate_step(step_id):
+    candidate_step = CandidateStep.query.get_or_404(step_id)
+    data = request.json
+    
+    if not data:
+        return jsonify({'error': 'Données invalides'}), 400
+        
+    candidate_step.status = data.get('status', candidate_step.status)
+    candidate_step.notes = data.get('notes', candidate_step.notes)
+    
+    # If status is 'Terminé', set completed_at
+    if data.get('status') == 'Terminé' and not candidate_step.completed_at:
+        candidate_step.completed_at = datetime.utcnow()
+    
+    db.session.commit()
+    return jsonify(candidate_step.to_dict())
+
+@app.route('/api/steps/<int:recruitment_step_id>/candidates/<int:candidate_id>', methods=['GET'])
+def get_candidate_step(recruitment_step_id, candidate_id):
+    candidate_step = CandidateStep.query.filter_by(
+        recruitment_step_id=recruitment_step_id,
+        candidate_id=candidate_id
+    ).first_or_404()
+    
+    return jsonify(candidate_step.to_dict())
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

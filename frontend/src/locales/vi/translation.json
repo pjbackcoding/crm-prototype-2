@@ -1,0 +1,171 @@
+{
+  "app_name": "CRM Tuyển dụng",
+  "search": {
+    "title": "Tìm kiếm nâng cao",
+    "button": "Tìm kiếm",
+    "candidates": "Ứng viên",
+    "missions": "Nhiệm vụ",
+    "show_advanced": "Tùy chọn nâng cao",
+    "hide_advanced": "Ẩn tùy chọn",
+    "name_placeholder": "Tìm theo họ",
+    "first_name_placeholder": "Tìm theo tên",
+    "mission_title_placeholder": "Tìm theo tiêu đề",
+    "client_placeholder": "Tìm theo khách hàng",
+    "company_placeholder": "Tìm theo công ty",
+    "all_sectors": "Tất cả các ngành",
+    "all_functions": "Tất cả các chức năng",
+    "loading": "Đang tìm kiếm...",
+    "loading_filters": "Đang tải bộ lọc...",
+    "filter_error": "Không thể tải bộ lọc. Vui lòng thử lại.",
+    "no_results": "Không tìm thấy kết quả. Vui lòng thay đổi tiêu chí tìm kiếm của bạn.",
+    "candidate_results": "Tìm thấy {{count}} ứng viên",
+    "mission_results": "Tìm thấy {{count}} nhiệm vụ"
+  },
+  "navigation": {
+    "dashboard": "Bảng Điều Khiển",
+    "candidates": "Ứng Viên",
+    "missions": "Nhiệm Vụ",
+    "new_candidate": "Ứng Viên Mới"
+  },
+  "dashboard": {
+    "title": "Bảng Điều Khiển",
+    "statistics": "Thống Kê",
+    "total_candidates": "Tổng Số Ứng Viên",
+    "sectors": "Lĩnh Vực",
+    "functions": "Chức Năng",
+    "recent_candidates": "Ứng Viên Mới Thêm",
+    "main_sectors": "Lĩnh Vực Chính",
+    "main_functions": "Chức Năng Chính",
+    "no_data": "Không Có Dữ Liệu",
+    "see_all": "Xem Tất Cả",
+    "add_candidate": "Thêm Ứng Viên"
+  },
+  "candidates": {
+    "title": "Ứng Viên",
+    "search": "Tìm kiếm ứng viên...",
+    "no_candidates": "Không có ứng viên trong cơ sở dữ liệu",
+    "add_candidate": "Thêm Ứng Viên",
+    "name": "Họ",
+    "first_name": "Tên",
+    "function": "Chức Năng",
+    "sector": "Lĩnh Vực",
+    "actions": "Hành Động",
+    "view": "Xem",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "delete_confirm": "Bạn có chắc chắn muốn xóa ứng viên này không?"
+  },
+  "missions": {
+    "title": "Nhiệm Vụ Tuyển Dụng",
+    "new_mission": "Nhiệm Vụ Mới",
+    "search": "Tìm kiếm nhiệm vụ...",
+    "no_missions": "Không tìm thấy nhiệm vụ nào",
+    "create_mission": "Tạo Nhiệm Vụ",
+    "all_statuses": "Tất Cả Trạng Thái",
+    "all_priorities": "Tất Cả Mức Độ Ưu Tiên",
+    "status": {
+      "active": "Đang Hoạt Động",
+      "paused": "Tạm Dừng",
+      "completed": "Hoàn Thành"
+    },
+    "priority": {
+      "low": "Thấp",
+      "normal": "Bình Thường",
+      "high": "Cao",
+      "urgent": "Khẩn Cấp"
+    },
+    "client": "Khách Hàng",
+    "location": "Địa Điểm",
+    "candidate_count": "ứng viên",
+    "actions": {
+      "details": "Chi Tiết",
+      "edit": "Sửa",
+      "delete": "Xóa",
+      "delete_confirm": "Bạn có chắc chắn muốn xóa nhiệm vụ này không?"
+    }
+  },
+  "mission_form": {
+    "edit_title": "Sửa Nhiệm Vụ",
+    "new_title": "Nhiệm Vụ Mới",
+    "general_info": "Thông Tin Chung",
+    "job_title": "Chức Danh Công Việc",
+    "client": "Khách Hàng / Công Ty",
+    "location": "Địa Điểm",
+    "function": "Chức Năng",
+    "sector": "Lĩnh Vực",
+    "salary_range": "Mức Lương",
+    "start_date": "Ngày Bắt Đầu",
+    "status": "Trạng Thái",
+    "priority": "Mức Độ Ưu Tiên",
+    "description": "Mô Tả Công Việc",
+    "description_placeholder": "Mô tả vai trò, trách nhiệm, kỹ năng yêu cầu, v.v.",
+    "client_contact": "Liên Hệ Khách Hàng",
+    "contact_name": "Tên Liên Hệ",
+    "email": "Email",
+    "phone": "Điện Thoại",
+    "recruitment_steps": "Các Bước Trong Quy Trình Tuyển Dụng",
+    "recruitment_steps_help": "Bạn có thể tùy chỉnh các bước hoặc giữ các bước mặc định",
+    "step_name": "Tên Bước",
+    "step_description": "Mô Tả (tùy chọn)",
+    "add_step": "Thêm Bước",
+    "cancel": "Hủy",
+    "save": "Lưu Thay Đổi",
+    "create": "Tạo Nhiệm Vụ"
+  },
+  "mission_detail": {
+    "edit": "Sửa",
+    "tabs": {
+      "info": "Thông Tin",
+      "candidates": "Ứng Viên",
+      "process": "Quy Trình Tuyển Dụng"
+    },
+    "info": {
+      "client": "Khách Hàng",
+      "function": "Chức Năng",
+      "sector": "Lĩnh Vực",
+      "location": "Địa Điểm",
+      "salary": "Lương",
+      "start_date": "Ngày Bắt Đầu",
+      "description": "Mô Tả Công Việc",
+      "contact": "Liên Hệ Khách Hàng"
+    },
+    "candidates": {
+      "add_candidate": "Thêm Ứng Viên",
+      "select_candidate": "Chọn Ứng Viên",
+      "add": "Thêm",
+      "all_associated": "Tất cả ứng viên đã được liên kết với nhiệm vụ này.",
+      "associated_candidates": "Ứng Viên Liên Kết",
+      "search": "Tìm kiếm ứng viên...",
+      "no_candidates": "Không có ứng viên nào liên kết với nhiệm vụ này",
+      "no_search_results": "Không có ứng viên nào phù hợp với tìm kiếm của bạn",
+      "remove_confirm": "Bạn có chắc chắn muốn loại bỏ ứng viên này khỏi nhiệm vụ không?"
+    },
+    "process": {
+      "no_steps": "Không có bước tuyển dụng nào được xác định",
+      "add_steps": "Thêm Các Bước",
+      "add_candidates_first": "Thêm ứng viên để theo dõi tiến độ của họ",
+      "manage_candidates": "Quản Lý Ứng Viên",
+      "steps": "Các Bước",
+      "status": {
+        "to_do": "Cần Làm",
+        "in_progress": "Đang Tiến Hành",
+        "completed": "Hoàn Thành",
+        "rejected": "Từ Chối"
+      },
+      "initialize": "Khởi Tạo"
+    }
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "required": "Trường này là bắt buộc",
+    "error": "Đã xảy ra lỗi"
+  },
+  "language": {
+    "fr": "Tiếng Pháp",
+    "en": "Tiếng Anh",
+    "vi": "Tiếng Việt",
+    "select": "Chọn ngôn ngữ"
+  }
+}

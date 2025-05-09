@@ -1,0 +1,171 @@
+{
+  "app_name": "CRM Recrutement",
+  "search": {
+    "title": "Recherche avancée",
+    "button": "Rechercher",
+    "candidates": "Candidats",
+    "missions": "Missions",
+    "show_advanced": "Options avancées",
+    "hide_advanced": "Masquer les options",
+    "name_placeholder": "Rechercher par nom",
+    "first_name_placeholder": "Rechercher par prénom",
+    "mission_title_placeholder": "Rechercher par titre",
+    "client_placeholder": "Rechercher par client",
+    "company_placeholder": "Rechercher par société",
+    "all_sectors": "Tous les secteurs",
+    "all_functions": "Toutes les fonctions",
+    "loading": "Recherche en cours...",
+    "loading_filters": "Chargement des filtres...",
+    "filter_error": "Impossible de charger les filtres. Veuillez réessayer.",
+    "no_results": "Aucun résultat trouvé. Veuillez modifier vos critères de recherche.",
+    "candidate_results": "{{count}} candidat(s) trouvé(s)",
+    "mission_results": "{{count}} mission(s) trouvée(s)"
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "candidates": "Candidats",
+    "missions": "Missions",
+    "new_candidate": "Nouveau candidat"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "statistics": "Statistiques",
+    "total_candidates": "Candidats au total",
+    "sectors": "Secteurs",
+    "functions": "Fonctions",
+    "recent_candidates": "Derniers candidats ajoutés",
+    "main_sectors": "Secteurs principaux",
+    "main_functions": "Fonctions principales",
+    "no_data": "Aucune donnée disponible",
+    "see_all": "Voir tous",
+    "add_candidate": "Ajouter un candidat"
+  },
+  "candidates": {
+    "title": "Candidats",
+    "search": "Rechercher un candidat...",
+    "no_candidates": "Aucun candidat dans la base de données",
+    "add_candidate": "Ajouter un candidat",
+    "name": "Nom",
+    "first_name": "Prénom",
+    "function": "Fonction",
+    "sector": "Secteur",
+    "actions": "Actions",
+    "view": "Voir",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "delete_confirm": "Êtes-vous sûr de vouloir supprimer ce candidat ?"
+  },
+  "missions": {
+    "title": "Missions de recrutement",
+    "new_mission": "Nouvelle mission",
+    "search": "Rechercher une mission...",
+    "no_missions": "Aucune mission trouvée",
+    "create_mission": "Créer une mission",
+    "all_statuses": "Tous les statuts",
+    "all_priorities": "Toutes les priorités",
+    "status": {
+      "active": "Actif",
+      "paused": "En pause",
+      "completed": "Terminé"
+    },
+    "priority": {
+      "low": "Basse",
+      "normal": "Normal",
+      "high": "Haute",
+      "urgent": "Urgente"
+    },
+    "client": "Client",
+    "location": "Localisation",
+    "candidate_count": "candidats",
+    "actions": {
+      "details": "Détails",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "delete_confirm": "Êtes-vous sûr de vouloir supprimer cette mission ?"
+    }
+  },
+  "mission_form": {
+    "edit_title": "Modifier la mission",
+    "new_title": "Nouvelle mission",
+    "general_info": "Informations générales",
+    "job_title": "Titre du poste",
+    "client": "Client / Entreprise",
+    "location": "Localisation",
+    "function": "Fonction",
+    "sector": "Secteur",
+    "salary_range": "Fourchette de salaire",
+    "start_date": "Date de début",
+    "status": "Statut",
+    "priority": "Priorité",
+    "description": "Description du poste",
+    "description_placeholder": "Décrivez le poste, les responsabilités, les compétences requises, etc.",
+    "client_contact": "Contact client",
+    "contact_name": "Nom du contact",
+    "email": "Email",
+    "phone": "Téléphone",
+    "recruitment_steps": "Étapes du processus de recrutement",
+    "recruitment_steps_help": "Vous pouvez personnaliser les étapes ou laisser les étapes par défaut",
+    "step_name": "Nom de l'étape",
+    "step_description": "Description (optionnelle)",
+    "add_step": "Ajouter une étape",
+    "cancel": "Annuler",
+    "save": "Enregistrer les modifications",
+    "create": "Créer la mission"
+  },
+  "mission_detail": {
+    "edit": "Modifier",
+    "tabs": {
+      "info": "Informations",
+      "candidates": "Candidats",
+      "process": "Processus de recrutement"
+    },
+    "info": {
+      "client": "Client",
+      "function": "Fonction",
+      "sector": "Secteur",
+      "location": "Localisation",
+      "salary": "Salaire",
+      "start_date": "Date de début",
+      "description": "Description du poste",
+      "contact": "Contact client"
+    },
+    "candidates": {
+      "add_candidate": "Ajouter un candidat",
+      "select_candidate": "Sélectionner un candidat",
+      "add": "Ajouter",
+      "all_associated": "Tous les candidats sont déjà associés à cette mission.",
+      "associated_candidates": "Candidats associés",
+      "search": "Rechercher un candidat...",
+      "no_candidates": "Aucun candidat associé à cette mission",
+      "no_search_results": "Aucun candidat ne correspond à votre recherche",
+      "remove_confirm": "Êtes-vous sûr de vouloir retirer ce candidat de la mission ?"
+    },
+    "process": {
+      "no_steps": "Aucune étape de recrutement définie",
+      "add_steps": "Ajouter des étapes",
+      "add_candidates_first": "Ajoutez des candidats pour suivre leur progression",
+      "manage_candidates": "Gérer les candidats",
+      "steps": "Étapes",
+      "status": {
+        "to_do": "À faire",
+        "in_progress": "En cours",
+        "completed": "Terminé",
+        "rejected": "Rejeté"
+      },
+      "initialize": "Initialiser"
+    }
+  },
+  "common": {
+    "loading": "Chargement...",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "required": "Ce champ est obligatoire",
+    "error": "Une erreur s'est produite"
+  },
+  "language": {
+    "fr": "Français",
+    "en": "Anglais",
+    "vi": "Vietnamien",
+    "select": "Sélectionner la langue"
+  }
+}

@@ -1,0 +1,104 @@
+/* Styles pour le sélecteur de langue */
+
+.language-switcher {
+  position: relative;
+  z-index: 1000;
+}
+
+.language-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: var(--radius);
+  color: var(--text-light);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.language-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.language-flag {
+  font-size: 1.2rem;
+}
+
+.language-name {
+  font-weight: 500;
+}
+
+.language-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: 220px;
+  background-color: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  z-index: 1100;
+}
+
+.language-dropdown-title {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--gray-200);
+  color: var(--gray-600);
+  font-weight: 500;
+  font-size: 0.9rem;
+  background-color: var(--gray-100);
+}
+
+.language-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.language-item:last-child {
+  border-bottom: none;
+}
+
+.language-item:hover {
+  background-color: var(--gray-100);
+}
+
+.language-item.active {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.language-fullname {
+  flex: 1;
+}
+
+/* Ajoutons une variable pour les couleurs avec RGB pour les utiliser dans rgba */
+:root {
+  --primary-color-rgb: 37, 99, 235; /* Valeur RGB de --primary-color (#2563eb) */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .language-button {
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .language-name {
+    display: none;
+  }
+}
