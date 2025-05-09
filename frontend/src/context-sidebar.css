@@ -1,0 +1,231 @@
+/* Styles pour la barre latérale contextuelle */
+
+.context-help-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 900;
+  transition: all 0.3s ease;
+}
+
+.context-help-toggle:hover {
+  background-color: var(--primary-color-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.context-help-toggle.active {
+  background-color: var(--danger-color);
+}
+
+.context-help-toggle i {
+  font-size: 1.5rem;
+}
+
+.context-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 380px;
+  height: 100vh;
+  background-color: var(--card-bg);
+  border-left: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s ease;
+  overflow: hidden;
+}
+
+.context-sidebar.open {
+  right: 0;
+}
+
+.context-sidebar-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.context-sidebar-header h2 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.context-sidebar-header h2 i {
+  color: var(--primary-color);
+}
+
+.context-sidebar-close {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.context-sidebar-close:hover {
+  background-color: var(--gray-100);
+  color: var(--text);
+}
+
+[data-theme="dark"] .context-sidebar-close:hover {
+  background-color: var(--gray-700);
+}
+
+.context-sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.context-help-section {
+  margin-bottom: 2rem;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.context-help-section:last-child {
+  margin-bottom: 0;
+}
+
+.context-help-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.context-help-section-header i {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+}
+
+.context-help-section-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.context-help-section-content {
+  margin-bottom: 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.context-help-tips,
+.context-help-shortcuts {
+  margin-bottom: 1.5rem;
+  background-color: var(--primary-color-light);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.context-help-tips h4,
+.context-help-shortcuts h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.context-help-tips ul,
+.context-help-shortcuts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.context-help-tips li,
+.context-help-shortcuts li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.context-help-tips li:last-child,
+.context-help-shortcuts li:last-child {
+  margin-bottom: 0;
+}
+
+.context-help-tips li i {
+  margin-right: 0.75rem;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.context-help-shortcuts li kbd {
+  margin-right: 0.75rem;
+  min-width: 60px;
+  text-align: center;
+}
+
+.context-help-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.context-help-empty i {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.3;
+}
+
+.context-sidebar-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.context-sidebar-footer kbd {
+  margin-left: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .context-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .context-help-toggle {
+    bottom: 10px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+  }
+}

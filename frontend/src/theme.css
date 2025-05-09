@@ -1,0 +1,152 @@
+/* Variables de thème global */
+:root {
+  /* Thème par défaut (clair) */
+  --background: #f3f4f6;
+  --card-bg: #ffffff;
+  --text: #1f2937;
+  --text-secondary: #4b5563;
+  --text-light: #ffffff;
+  --border: #e5e7eb;
+  --primary-color: #2563eb;
+  --primary-color-hover: #1d4ed8;
+  --primary-color-active: #1e40af;
+  --primary-color-light: rgba(37, 99, 235, 0.1);
+  --secondary-color: #4b5563;
+  --danger-color: #ef4444;
+  --danger-color-hover: #dc2626;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --header-bg: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  --header-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --chart-colors: #2563eb, #8b5cf6, #ec4899, #f59e0b, #10b981, #06b6d4;
+  --transition-speed: 0.2s;
+  
+  /* Valeurs RGB pour les couleurs qui seront utilisées avec alpha */
+  --primary-color-rgb: 37, 99, 235;
+  --danger-color-rgb: 239, 68, 68;
+  --success-color-rgb: 16, 185, 129;
+  --warning-color-rgb: 245, 158, 11;
+}
+
+/* Thème sombre */
+[data-theme="dark"] {
+  --background: #111827;
+  --card-bg: #1f2937;
+  --text: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border: #374151;
+  --primary-color: #3b82f6;
+  --primary-color-hover: #2563eb;
+  --primary-color-active: #1d4ed8;
+  --primary-color-light: rgba(59, 130, 246, 0.2);
+  --gray-50: #1f2937;
+  --gray-100: #1f2937;
+  --gray-200: #374151;
+  --gray-300: #4b5563;
+  --gray-400: #6b7280;
+  --gray-500: #9ca3af;
+  --gray-600: #d1d5db;
+  --gray-700: #e5e7eb;
+  --gray-800: #f3f4f6;
+  --gray-900: #f9fafb;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --header-bg: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+  --header-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.3);
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* Appliquer les variables de thème globalement */
+body {
+  background-color: var(--background);
+  color: var(--text);
+  transition: background-color var(--transition-speed) ease, 
+              color var(--transition-speed) ease;
+}
+
+.card,
+.table,
+.modal-content,
+.dropdown-menu,
+.tooltip {
+  background-color: var(--card-bg);
+  border-color: var(--border);
+  transition: background-color var(--transition-speed) ease,
+              border-color var(--transition-speed) ease;
+}
+
+a, button, input, select, textarea {
+  transition: all var(--transition-speed) ease;
+}
+
+/* Styles pour le bouton de bascule de thème */
+.theme-toggle {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.theme-toggle-icon {
+  font-size: 14px;
+  color: var(--text-light);
+  z-index: 1;
+}
+
+.theme-toggle-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: transform 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .theme-toggle-slider {
+  transform: translateX(26px);
+}
+
+/* Améliorations des transitions */
+.card, .btn, .nav-link, .table, .form-control {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Animations pour les listes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}

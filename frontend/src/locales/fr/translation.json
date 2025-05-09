@@ -162,6 +162,100 @@
     "required": "Ce champ est obligatoire",
     "error": "Une erreur s'est produite"
   },
+  "notifications": {
+    "saved_success": "Enregistré avec succès",
+    "save_error": "Erreur lors de l'enregistrement",
+    "deleted_success": "Supprimé avec succès",
+    "delete_error": "Erreur lors de la suppression",
+    "loading_error": "Erreur lors du chargement des données",
+    "welcome_back": "Bon retour sur votre CRM !"
+  },
+  "theme": {
+    "toggle": "Changer de thème",
+    "switch_to_dark": "Passer au mode sombre",
+    "switch_to_light": "Passer au mode clair"
+  },
+  "shortcuts": {
+    "title": "Raccourcis clavier",
+    "description": "Utilisez ces raccourcis clavier pour naviguer et interagir plus rapidement avec l'application.",
+    "navigation": "Navigation",
+    "actions": "Actions",
+    "press_escape": "Appuyez sur ESC pour fermer",
+    "go_home": "Aller à l'accueil",
+    "candidates_list": "Liste des candidats",
+    "missions_list": "Liste des missions",
+    "new_candidate": "Nouveau candidat",
+    "new_mission": "Nouvelle mission",
+    "focus_search": "Rechercher",
+    "toggle_theme": "Changer de thème",
+    "show_help": "Afficher l'aide",
+    "close_modal": "Fermer la fenêtre"
+  },
+  "context_help": {
+    "title": "Aide contextuelle",
+    "open": "Ouvrir l'aide",
+    "close": "Fermer l'aide",
+    "tips_section": "Astuces",
+    "shortcuts_section": "Raccourcis",
+    "no_content": "Pas d'aide disponible pour cette page.",
+    "keyboard_shortcut": "Raccourci clavier",
+    "dashboard": {
+      "title": "Tableau de bord",
+      "content": "Bienvenue sur le tableau de bord. Ici, vous pouvez voir un aperçu de vos candidats, missions et activités récentes.",
+      "tip1": "Utilisez la recherche avancée pour trouver rapidement des candidats ou des missions.",
+      "tip2": "Changez de langue en utilisant le sélecteur dans l'en-tête.",
+      "tip3": "Consultez les statistiques pour analyser votre activité de recrutement."
+    },
+    "candidate_list": {
+      "title": "Liste des candidats",
+      "content": "Cette page affiche tous vos candidats. Vous pouvez filtrer, trier et rechercher parmi eux.",
+      "tip1": "Filtrez les candidats par secteur, fonction ou statut.",
+      "tip2": "Cliquez sur une ligne pour voir les détails du candidat.",
+      "tip3": "Ajoutez un nouveau candidat avec le bouton '+ Nouveau candidat'."
+    },
+    "candidate_form": {
+      "title": "Formulaire de candidat",
+      "content": "Utilisez ce formulaire pour ajouter ou modifier les informations d'un candidat.",
+      "tip1": "Tous les champs marqués d'un astérisque (*) sont obligatoires.",
+      "tip2": "Ajoutez des tags pour catégoriser vos candidats.",
+      "tip3": "Vous pouvez joindre un CV ou des documents pertinents."
+    },
+    "candidate_detail": {
+      "title": "Détails du candidat",
+      "content": "Cette page affiche les informations détaillées d'un candidat ainsi que son historique d'interactions.",
+      "tip1": "Cliquez sur 'Modifier' pour mettre à jour les informations du candidat.",
+      "tip2": "Planifiez des entretiens ou des événements dans la section 'Interactions'.",
+      "tip3": "Associez le candidat à des missions en utilisant la section 'Missions'."
+    },
+    "mission_list": {
+      "title": "Liste des missions",
+      "content": "Cette page affiche toutes vos missions de recrutement. Vous pouvez filtrer, trier et rechercher parmi elles.",
+      "tip1": "Filtrez les missions par client, secteur ou statut.",
+      "tip2": "Cliquez sur une ligne pour voir les détails de la mission.",
+      "tip3": "Ajoutez une nouvelle mission avec le bouton '+ Nouvelle mission'."
+    },
+    "mission_form": {
+      "title": "Formulaire de mission",
+      "content": "Utilisez ce formulaire pour créer ou modifier une mission de recrutement.",
+      "tip1": "Définissez clairement les besoins et critères pour faciliter la recherche de candidats.",
+      "tip2": "Ajoutez des étapes de recrutement personnalisées pour cette mission.",
+      "tip3": "Vous pouvez associer des candidats existants directement depuis ce formulaire."
+    },
+    "mission_detail": {
+      "title": "Détails de la mission",
+      "content": "Cette page affiche les informations détaillées d'une mission ainsi que les candidats associés.",
+      "tip1": "Cliquez sur 'Modifier' pour mettre à jour les informations de la mission.",
+      "tip2": "Ajoutez des candidats à cette mission en utilisant le bouton 'Ajouter un candidat'.",
+      "tip3": "Suivez la progression des candidats à travers les différentes étapes du processus."
+    },
+    "shortcuts_actions": {
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "search": "Rechercher",
+      "new_candidate": "Nouveau candidat",
+      "new_mission": "Nouvelle mission"
+    }
+  },
   "language": {
     "fr": "Français",
     "en": "Anglais",

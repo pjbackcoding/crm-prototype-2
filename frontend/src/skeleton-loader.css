@@ -1,0 +1,251 @@
+/* Styles pour les squelettes de chargement */
+
+/* Animation de scintillement */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* Base des squelettes */
+.skeleton-loader * {
+  background-color: var(--gray-200);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0)
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  border-radius: var(--radius);
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+[data-theme="dark"] .skeleton-loader * {
+  background-color: var(--gray-700);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+/* Types de squelettes */
+.skeleton-text {
+  height: 12px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.skeleton-text:last-child {
+  width: 80%;
+}
+
+.skeleton-title {
+  height: 20px;
+  margin-bottom: 12px;
+  width: 50%;
+}
+
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.skeleton-thumbnail {
+  width: 100%;
+  height: 160px;
+}
+
+.skeleton-button {
+  height: 36px;
+  width: 120px;
+  border-radius: var(--radius);
+}
+
+.skeleton-textarea {
+  height: 100px;
+  width: 100%;
+}
+
+/* Squelette de tableau */
+.skeleton-table {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+}
+
+.skeleton-table-header {
+  display: flex;
+  padding: 12px 16px;
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.skeleton-header-cell {
+  flex: 1;
+  height: 20px;
+  margin-right: 12px;
+}
+
+.skeleton-header-cell:last-child {
+  margin-right: 0;
+}
+
+.skeleton-table-body {
+  background-color: var(--card-bg);
+}
+
+.skeleton-table-row {
+  display: flex;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skeleton-table-row:last-child {
+  border-bottom: none;
+}
+
+.skeleton-cell {
+  flex: 1;
+  height: 16px;
+  margin-right: 12px;
+}
+
+.skeleton-cell:last-child {
+  margin-right: 0;
+  width: 40px;
+}
+
+/* Squelette de carte */
+.skeleton-card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-md);
+}
+
+.skeleton-card-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skeleton-card-body {
+  padding: 16px;
+}
+
+.skeleton-card-footer {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.skeleton-card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* Squelette de profil */
+.skeleton-profile {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.skeleton-profile-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skeleton-profile-info {
+  flex: 1;
+}
+
+.skeleton-profile-body {
+  padding: 20px;
+}
+
+/* Squelette de formulaire */
+.skeleton-form {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.skeleton-form-group {
+  margin-bottom: 16px;
+}
+
+.skeleton-label {
+  height: 14px;
+  width: 30%;
+  margin-bottom: 8px;
+}
+
+.skeleton-input {
+  height: 36px;
+  width: 100%;
+}
+
+.skeleton-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Squelette de recherche */
+.skeleton-search {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.skeleton-search-input {
+  height: 40px;
+  margin-bottom: 16px;
+}
+
+.skeleton-search-filters {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-filter {
+  height: 32px;
+  width: 120px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skeleton-card-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .skeleton-profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

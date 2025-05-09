@@ -1,5 +1,24 @@
 /* Styles pour le sélecteur de langue */
 
+/* Groupe d'outils dans le header */
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
+@media (max-width: 768px) {
+  .header-tools {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 0.5rem;
+  }
+}
+
 .language-switcher {
   position: relative;
   z-index: 1000;

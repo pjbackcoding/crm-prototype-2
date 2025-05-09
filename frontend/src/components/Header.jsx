@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
+import ThemeToggle from './ThemeToggle';
 
 function Header() {
   const { t } = useTranslation();
@@ -46,7 +47,10 @@ function Header() {
             <span>{t('navigation.new_candidate')}</span>
           </Link>
           
-          <LanguageSwitcher />
+          <div className="header-tools">
+            <ThemeToggle />
+            <LanguageSwitcher />
+          </div>
         </nav>
       </div>
     </header>

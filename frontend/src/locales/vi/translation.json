@@ -158,9 +158,105 @@
   "common": {
     "loading": "Đang tải...",
     "save": "Lưu",
-    "cancel": "Hủy",
+    "cancel": "Hủy"
+  },
+  "validation": {
     "required": "Trường này là bắt buộc",
     "error": "Đã xảy ra lỗi"
+  },
+  "notifications": {
+    "saved_success": "Đã lưu thành công",
+    "save_error": "Lỗi khi lưu",
+    "deleted_success": "Đã xóa thành công",
+    "delete_error": "Lỗi khi xóa",
+    "loading_error": "Lỗi khi tải dữ liệu",
+    "welcome_back": "Chào mừng trở lại với CRM!"
+  },
+  "theme": {
+    "toggle": "Chuyển đổi giao diện",
+    "switch_to_dark": "Chuyển sang chế độ tối",
+    "switch_to_light": "Chuyển sang chế độ sáng"
+  },
+  "context_help": {
+    "title": "Trợ giúp",
+    "open": "Mở trợ giúp",
+    "close": "Đóng trợ giúp",
+    "tips_section": "Mẹo",
+    "shortcuts_section": "Phím tắt",
+    "no_content": "Không có trợ giúp cho trang này.",
+    "keyboard_shortcut": "Phím tắt",
+    "dashboard": {
+      "title": "Bảng điều khiển",
+      "content": "Chào mừng đến với bảng điều khiển. Tại đây, bạn có thể xem tổng quan về các ứng viên, nhiệm vụ và hoạt động gần đây.",
+      "tip1": "Sử dụng tìm kiếm nâng cao để nhanh chóng tìm kiếm ứng viên hoặc nhiệm vụ.",
+      "tip2": "Thay đổi ngôn ngữ bằng cách sử dụng bộ chọn trong tiêu đề.",
+      "tip3": "Kiểm tra thống kê để phân tích hoạt động tuyển dụng của bạn."
+    },
+    "candidate_list": {
+      "title": "Danh sách ứng viên",
+      "content": "Trang này hiển thị tất cả các ứng viên của bạn. Bạn có thể lọc, sắp xếp và tìm kiếm trong số họ.",
+      "tip1": "Lọc ứng viên theo ngành, chức năng hoặc trạng thái.",
+      "tip2": "Nhấp vào một hàng để xem chi tiết ứng viên.",
+      "tip3": "Thêm ứng viên mới bằng nút '+ Ứng viên mới'."
+    },
+    "candidate_form": {
+      "title": "Biểu mẫu ứng viên",
+      "content": "Sử dụng biểu mẫu này để thêm hoặc chỉnh sửa thông tin ứng viên.",
+      "tip1": "Tất cả các trường được đánh dấu hộc (*) là bắt buộc.",
+      "tip2": "Thêm thẻ để phân loại ứng viên của bạn.",
+      "tip3": "Bạn có thể đính kèm sơ yếu lý lịch hoặc tài liệu liên quan."
+    },
+    "candidate_detail": {
+      "title": "Chi tiết ứng viên",
+      "content": "Trang này hiển thị thông tin chi tiết về ứng viên cũng như lịch sử tương tác của họ.",
+      "tip1": "Nhấp vào 'Chỉnh sửa' để cập nhật thông tin ứng viên.",
+      "tip2": "Lên lịch phỏng vấn hoặc sự kiện trong phần 'Tương tác'.",
+      "tip3": "Kết hợp ứng viên với các nhiệm vụ bằng cách sử dụng phần 'Nhiệm vụ'."
+    },
+    "mission_list": {
+      "title": "Danh sách nhiệm vụ",
+      "content": "Trang này hiển thị tất cả các nhiệm vụ tuyển dụng của bạn. Bạn có thể lọc, sắp xếp và tìm kiếm trong số chúng.",
+      "tip1": "Lọc nhiệm vụ theo khách hàng, ngành hoặc trạng thái.",
+      "tip2": "Nhấp vào một hàng để xem chi tiết nhiệm vụ.",
+      "tip3": "Thêm nhiệm vụ mới bằng nút '+ Nhiệm vụ mới'."
+    },
+    "mission_form": {
+      "title": "Biểu mẫu nhiệm vụ",
+      "content": "Sử dụng biểu mẫu này để tạo hoặc chỉnh sửa nhiệm vụ tuyển dụng.",
+      "tip1": "Xác định rõ ràng các nhu cầu và tiêu chí để tạo thuận lợi cho việc tìm kiếm ứng viên.",
+      "tip2": "Thêm các bước tuyển dụng tùy chỉnh cho nhiệm vụ này.",
+      "tip3": "Bạn có thể kết hợp các ứng viên hiện tại trực tiếp từ biểu mẫu này."
+    },
+    "mission_detail": {
+      "title": "Chi tiết nhiệm vụ",
+      "content": "Trang này hiển thị thông tin chi tiết về nhiệm vụ cũng như các ứng viên liên kết.",
+      "tip1": "Nhấp vào 'Chỉnh sửa' để cập nhật thông tin nhiệm vụ.",
+      "tip2": "Thêm ứng viên vào nhiệm vụ này bằng cách sử dụng nút 'Thêm ứng viên'.",
+      "tip3": "Theo dõi tiến trình của ứng viên qua các giai đoạn khác nhau của quy trình."
+    },
+    "shortcuts_actions": {
+      "save": "Lưu",
+      "cancel": "Hủy",
+      "search": "Tìm kiếm",
+      "new_candidate": "Ứng viên mới",
+      "new_mission": "Nhiệm vụ mới"
+    }
+  },
+  "shortcuts": {
+    "title": "Phím tắt",
+    "description": "Sử dụng các phím tắt này để di chuyển và tương tác với ứng dụng nhanh hơn.",
+    "navigation": "Di chuyển",
+    "actions": "Thao tác",
+    "press_escape": "Nhấn ESC để đóng",
+    "go_home": "Về trang chủ",
+    "candidates_list": "Danh sách ứng viên",
+    "missions_list": "Danh sách nhiệm vụ",
+    "new_candidate": "Ứng viên mới",
+    "new_mission": "Nhiệm vụ mới",
+    "focus_search": "Tìm kiếm",
+    "toggle_theme": "Chuyển đổi giao diện",
+    "show_help": "Hiển thị trợ giúp",
+    "close_modal": "Đóng cửa sổ"
   },
   "language": {
     "fr": "Tiếng Pháp",
